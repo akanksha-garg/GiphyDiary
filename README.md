@@ -3,6 +3,13 @@
 ## Author:- Akanksha Garg
 email: <akanksha.garg9@gmail.com>
 
+## Screenshots
+
+![](GiphyDiary/GiphyDiary/Resources/TrendingGIFsView.png)
+![](GiphyDiary/GiphyDiary/Resources/SearchGIFsView.png)
+![](GiphyDiary/GiphyDiary/Resources/FavoritesGridView.png)
+![](GiphyDiary/GiphyDiary/Resources/FavoritesListView.png)
+
 ## Overview
 
 Implemented in Swift and compatible for both iPhone and iPad (Different screen sizes.)
@@ -44,10 +51,3 @@ Giphy is an animated GIF search engine. The Giphy API implements a REST-like int
   - Giphy documentation: "https://developers.giphy.com/docs/api"
   
   **Note: GIPHY requires developers to use a key to access API data. To use the GIPHY API, you'll need a (free) GIPHY account. Then, you can obtain a key. Please add key in Constants File (i.e at "giphyAPI_Key") file to successfully run the project.
-
-## Screenshots
-
-[Screen#1](GiphyDiary/GiphyDiary/Resources/TrendingGIFsView.png)
-[Screen#2](GiphyDiary/GiphyDiary/Resources/SearchGIFsView.png)
-[Screen#3](GiphyDiary/GiphyDiary/Resources/FavoritesGridView.png)
-[Screen#4](GiphyDiary/GiphyDiary/Resources/FavoritesListView.png)
