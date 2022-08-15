@@ -47,7 +47,7 @@ Giphy is an animated GIF search engine. The Giphy API implements a REST-like int
 
 ## Screenshots
 
-[Screen#1](GiphyDiary/Resources/TrendingGIFsView.png)
-[Screen#2](GiphyDiary/Resources/SearchGIFsView.png)
-[Screen#3](GiphyDiary/Resources/FavoritesGridView.png)
-[Screen#4](GiphyDiary/Resources/FavoritesListView.png)
+[Screen#1](GiphyDiary/GiphyDiary/Resources/TrendingGIFsView.png)
+[Screen#2](GiphyDiary/GiphyDiary/Resources/SearchGIFsView.png)
+[Screen#3](GiphyDiary/GiphyDiary/Resources/FavoritesGridView.png)
+[Screen#4](GiphyDiary/GiphyDiary/Resources/FavoritesListView.png)
