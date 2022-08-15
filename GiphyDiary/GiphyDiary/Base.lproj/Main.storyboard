@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Z92-QZ-78R">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--FavoriteGI Fs View Controller-->
+        <scene sceneID="nj8-Rd-kgj">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteGIFsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gfg-6t-xNp" customClass="FavoriteGIFsViewController" customModule="GiphyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dyM-av-DNA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="8D9-H4-fK6">
+                                <rect key="frame" x="10" y="131" width="394" height="671"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="XIQ-o0-TrX">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="gfg-6t-xNp" id="pXP-Ye-4Uw"/>
+                                    <outlet property="delegate" destination="gfg-6t-xNp" id="4cD-Ae-hYf"/>
+                                </connections>
+                            </collectionView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="v1q-Uu-nc9">
+                                <rect key="frame" x="25" y="67" width="364" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="tzj-SE-MRL"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Grid"/>
+                                    <segment title="List"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cRl-9J-uzP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8D9-H4-fK6" firstAttribute="top" secondItem="v1q-Uu-nc9" secondAttribute="bottom" constant="24" id="9Kh-0f-HOC"/>
+                            <constraint firstItem="cRl-9J-uzP" firstAttribute="bottom" secondItem="8D9-H4-fK6" secondAttribute="bottom" constant="11" id="CeP-H2-bnW"/>
+                            <constraint firstItem="v1q-Uu-nc9" firstAttribute="top" secondItem="cRl-9J-uzP" secondAttribute="top" constant="23" id="Dtg-Dg-zBq"/>
+                            <constraint firstItem="cRl-9J-uzP" firstAttribute="trailing" secondItem="8D9-H4-fK6" secondAttribute="trailing" constant="10" id="FiJ-Z2-eGD"/>
+                            <constraint firstItem="8D9-H4-fK6" firstAttribute="leading" secondItem="cRl-9J-uzP" secondAttribute="leading" constant="10" id="hUQ-Fe-THs"/>
+                            <constraint firstItem="cRl-9J-uzP" firstAttribute="trailing" secondItem="v1q-Uu-nc9" secondAttribute="trailing" constant="25" id="klu-yZ-sda"/>
+                            <constraint firstItem="v1q-Uu-nc9" firstAttribute="leading" secondItem="cRl-9J-uzP" secondAttribute="leading" constant="25" id="mAe-d4-7xs"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="uSc-fK-8VS">
+                        <imageReference key="image" image="heart.fill" catalog="system"/>
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageReference key="selectedImage" image="heart.fill" catalog="system" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color systemColor="labelColor"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="imagesCollectionview" destination="8D9-H4-fK6" id="Fbn-d1-cRD"/>
+                        <outlet property="segmentedControl" destination="v1q-Uu-nc9" id="HcC-sP-q4w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MHw-Hy-ov5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1301" y="1364"/>
+        </scene>
+        <!--Search Gifs View Controller-->
+        <scene sceneID="83o-N5-wAB">
+            <objects>
+                <viewController storyboardIdentifier="SearchGifsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uNd-9V-AGf" customClass="SearchGifsViewController" customModule="GiphyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tLf-Tc-Sw7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for GIFs" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNZ-nG-7tk">
+                                <rect key="frame" x="10" y="54" width="394" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="eG4-eK-5DO"/>
+                                </constraints>
+                                <color key="barTintColor" systemColor="systemGray6Color"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="eIq-9I-25J">
+                                <rect key="frame" x="10" y="129" width="394" height="674"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MK4-nT-mle"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MK4-nT-mle" firstAttribute="trailing" secondItem="GNZ-nG-7tk" secondAttribute="trailing" constant="10" id="309-At-5g3"/>
+                            <constraint firstItem="MK4-nT-mle" firstAttribute="trailing" secondItem="eIq-9I-25J" secondAttribute="trailing" constant="10" id="9DX-jG-59V"/>
+                            <constraint firstItem="GNZ-nG-7tk" firstAttribute="top" secondItem="MK4-nT-mle" secondAttribute="top" constant="10" id="TQz-wP-e2p"/>
+                            <constraint firstItem="eIq-9I-25J" firstAttribute="top" secondItem="GNZ-nG-7tk" secondAttribute="bottom" constant="15" id="Tnl-dH-DgK"/>
+                            <constraint firstItem="MK4-nT-mle" firstAttribute="bottom" secondItem="eIq-9I-25J" secondAttribute="bottom" constant="10" id="pTf-kx-fx5"/>
+                            <constraint firstItem="GNZ-nG-7tk" firstAttribute="leading" secondItem="MK4-nT-mle" secondAttribute="leading" constant="10" id="xE6-89-DPN"/>
+                            <constraint firstItem="eIq-9I-25J" firstAttribute="leading" secondItem="MK4-nT-mle" secondAttribute="leading" constant="10" id="xN8-Qd-mdC"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="doc.fill" catalog="system" id="1pb-DI-y8t">
+                        <imageReference key="selectedImage" image="doc.fill" catalog="system" renderingMode="hierarchical-single">
+                            <hierarchicalColors>
+                                <color systemColor="labelColor"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="searchBar" destination="GNZ-nG-7tk" id="wkp-gT-7El"/>
+                        <outlet property="tblView" destination="eIq-9I-25J" id="eob-e2-9xD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1K3-Ai-2Y2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1301.449275362319" y="716.51785714285711"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="0Rf-y8-RDy">
+            <objects>
+                <tabBarController id="Z92-QZ-78R" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WDq-a9-qdp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="uNd-9V-AGf" kind="relationship" relationship="viewControllers" id="Kkb-uY-zBR"/>
+                        <segue destination="gfg-6t-xNp" kind="relationship" relationship="viewControllers" id="WNW-vn-5Fd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mcj-Da-0ac" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2267" y="1008"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="doc.fill" catalog="system" width="115" height="128"/>
+        <image name="heart.fill" catalog="system" width="128" height="109"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
