@@ -74,7 +74,7 @@ class SearchGifsViewModel {
     ///   - image: Image that need to be saved.
     ///   - imageName: Name from which image need to be saved.
     ///
-    func saveImageInFavoriteFolder(image: UIImage, imageName: String, _ completion: @escaping (Bool,Error?) -> Void) {
+    func saveImageInFavoriteFolder(image: UIImage, imageName: String, _ completion: @escaping fetchDataCompletionHandler) {
         fileManager.saveImage(image: image, imageName: imageName, folderName: Constants.Data.folderName){ (result, error) in
             completion(result, error)
         }
@@ -98,12 +98,11 @@ class SearchGifsViewModel {
     /// - Parameters:
     ///   - imageName: Name from which image need to be removed.
     ///   - folderName: Name of folder from which image need to be removed.
-    ///
-    /// - returns: Status of Operation (Wether Success or Failure).
     
-    func removeImageFromFavoriteFolder(imageName: String) -> Bool {
-        let success = fileManager.removeImage(imageName: imageName, folderName: Constants.Data.folderName)
-        return success
+    func removeImageFromFavoriteFolder(imageName: String, _ completion: @escaping fetchDataCompletionHandler) {
+        fileManager.removeImage(imageName: imageName, folderName: Constants.Data.folderName){ (result, error) in
+            completion(result, error)
+        }
     }
     
     ///To find out total number of GIFs available.

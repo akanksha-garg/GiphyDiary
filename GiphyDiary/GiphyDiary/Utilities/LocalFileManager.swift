@@ -24,7 +24,7 @@ class LocalFileManager {
     ///   - imageName: Name from which image need to be saved.
     ///   - folderName: Name of folder in which image need to be saved.
     
-    func saveImage(image: UIImage, imageName: String, folderName: String, _ completion: @escaping (Bool,Error?) -> Void) {
+    func saveImage(image: UIImage, imageName: String, folderName: String, _ completion: @escaping fetchDataCompletionHandler) {
         
         //Step1-> Create Folder.
         createFolderIfNeeded(folderName: folderName)
@@ -53,21 +53,24 @@ class LocalFileManager {
     /// - Parameters:
     ///   - imageName: Name from which image need to be removed.
     ///   - folderName: Name of folder from which image need to be removed.
-    ///
-    /// - returns: Status of Operation (Wether Success or Failure).
     
-    func removeImage(imageName: String, folderName: String) -> Bool {
+    func removeImage(imageName: String, folderName: String, _ completion: @escaping fetchDataCompletionHandler) {
         
         //Step1-> Get path for image.
-        guard let url = getURLForImage(imageName: imageName, folderName: folderName) else {return false}
-        //Step2-> Remove image on on fetched path.
-        do {
-            try FileManager.default.removeItem(atPath: url.path)
-        } catch let error {
-            print("Error removing image. \(error)")
-            return false
+        guard let url = getURLForImage(imageName: imageName, folderName: folderName) else {
+            completion(false, nil)
+            return
         }
-        return true
+        //Step2-> Remove image on on fetched path.
+        DispatchQueue.global().async {
+            do {
+                try FileManager.default.removeItem(atPath: url.path)
+                completion(true, nil)
+            } catch let error {
+                print("Error removing image. \(error)")
+                completion(false, error)
+            }
+        }
     }
     
     /// Fetch the image from specified path through File Manager.

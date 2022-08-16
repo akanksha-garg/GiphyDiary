@@ -12,9 +12,11 @@ class GiphyDiaryTests: XCTestCase {
     
     var responseType: APIResponseType?
     var searchGifsViewModel: SearchGifsViewModel!
+    var favoriteGIFsViewModel: FavoriteGIFsViewModel!
 
     override func setUpWithError() throws {
         searchGifsViewModel = SearchGifsViewModel()
+        favoriteGIFsViewModel = FavoriteGIFsViewModel()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -80,7 +82,7 @@ class GiphyDiaryTests: XCTestCase {
     
     func testSaveImageInFavoriteFolder() {
         let expectation = expectation(description: "SaveImageInFavoriteFolder")
-        let image = UIImage(systemName: Constants.Image.unFav)
+        let image = UIImage(systemName: Constants.Image.fav)
         var resultImage: UIImage?
         searchGifsViewModel.saveImageInFavoriteFolder(image: image!, imageName: "TestImage"){ (success, error) in
             if success {
@@ -91,12 +93,26 @@ class GiphyDiaryTests: XCTestCase {
         waitForExpectations(timeout: 1) { (error) in
             XCTAssertNotNil(resultImage)
         }
+        
+        getAllImagesInFolder()
+    }
+    
+    private func getAllImagesInFolder() {
+        favoriteGIFsViewModel.getAllImageInFavoriteFolder()
+        let imageName = favoriteGIFsViewModel.favoriteImageNames?.contains("TestImage.png") ?? false
+        XCTAssertTrue(imageName)
     }
     
     func testRemoveImageFromFavoriteFolder() {
-        let success = searchGifsViewModel.removeImageFromFavoriteFolder(imageName: "TestImage")
-        if success {
-            let resultImage = self.searchGifsViewModel.imageExistInFavoriteFolder(imageName: "TestImage").0
+        let expectation = expectation(description: "RemoveImageFromFavoriteFolder")
+        var resultImage: UIImage?
+        searchGifsViewModel.removeImageFromFavoriteFolder(imageName: "TestImage"){ (success, error) in
+            if success {
+                resultImage = self.searchGifsViewModel.imageExistInFavoriteFolder(imageName: "TestImage").0
+                expectation.fulfill()
+            }
+        }
+        waitForExpectations(timeout: 1) { (error) in
             XCTAssertNil(resultImage)
         }
     }
