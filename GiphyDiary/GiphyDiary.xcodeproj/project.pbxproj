@@ -33,11 +33,9 @@
 		C352B4E228A984BA006BE06A /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352B4E128A984BA006BE06A /* Loader.swift */; };
 		C352B4E528A987DB006BE06A /* ImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C352B4E328A987DB006BE06A /* ImagesTableViewCell.swift */; };
 		C352B4E628A987DB006BE06A /* ImagesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C352B4E428A987DB006BE06A /* ImagesTableViewCell.xib */; };
-		C3F23FAF28AABB7600142EC3 /* SearchGIFsView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FAE28AABB7600142EC3 /* SearchGIFsView.png */; };
-		C3F23FB128AABB7D00142EC3 /* TrendingGIFsView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FB028AABB7D00142EC3 /* TrendingGIFsView.png */; };
-		C3F23FB428AABB8400142EC3 /* FavoritesGridView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FB228AABB8400142EC3 /* FavoritesGridView.png */; };
-		C3F23FB528AABB8400142EC3 /* FavoritesListView.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FB328AABB8400142EC3 /* FavoritesListView.png */; };
 		C3F23FB728AADE1800142EC3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F23FB628AADE1800142EC3 /* Extensions.swift */; };
+		C3F23FBB28AC274A00142EC3 /* GiphyDiaryScreens.png in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FBA28AC274A00142EC3 /* GiphyDiaryScreens.png */; };
+		C3F23FBD28AC27CC00142EC3 /* Giphy.json in Resources */ = {isa = PBXBuildFile; fileRef = C3F23FBC28AC27CB00142EC3 /* Giphy.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,11 +89,9 @@
 		C352B4E128A984BA006BE06A /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		C352B4E328A987DB006BE06A /* ImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesTableViewCell.swift; sourceTree = "<group>"; };
 		C352B4E428A987DB006BE06A /* ImagesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesTableViewCell.xib; sourceTree = "<group>"; };
-		C3F23FAE28AABB7600142EC3 /* SearchGIFsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchGIFsView.png; sourceTree = "<group>"; };
-		C3F23FB028AABB7D00142EC3 /* TrendingGIFsView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrendingGIFsView.png; sourceTree = "<group>"; };
-		C3F23FB228AABB8400142EC3 /* FavoritesGridView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesGridView.png; sourceTree = "<group>"; };
-		C3F23FB328AABB8400142EC3 /* FavoritesListView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FavoritesListView.png; sourceTree = "<group>"; };
 		C3F23FB628AADE1800142EC3 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C3F23FBA28AC274A00142EC3 /* GiphyDiaryScreens.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GiphyDiaryScreens.png; sourceTree = "<group>"; };
+		C3F23FBC28AC27CB00142EC3 /* Giphy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Giphy.json; sourceTree = "<group>"; };
 		CA2BA0037D59DB7495A414BF /* Pods-GiphyDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyDiaryTests/Pods-GiphyDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		D11CFE0509145103F531C8D6 /* Pods-GiphyDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyDiary.debug.xcconfig"; path = "Target Support Files/Pods-GiphyDiary/Pods-GiphyDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		D78C129C3998932A72EB789D /* Pods_GiphyDiary_GiphyDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyDiary_GiphyDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,10 +274,8 @@
 		C3F23FA528AAB9A400142EC3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C3F23FAE28AABB7600142EC3 /* SearchGIFsView.png */,
-				C3F23FB028AABB7D00142EC3 /* TrendingGIFsView.png */,
-				C3F23FB228AABB8400142EC3 /* FavoritesGridView.png */,
-				C3F23FB328AABB8400142EC3 /* FavoritesListView.png */,
+				C3F23FBA28AC274A00142EC3 /* GiphyDiaryScreens.png */,
+				C3F23FBC28AC27CB00142EC3 /* Giphy.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -406,14 +400,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C352B49C28A971E0006BE06A /* LaunchScreen.storyboard in Resources */,
-				C3F23FB128AABB7D00142EC3 /* TrendingGIFsView.png in Resources */,
+				C3F23FBD28AC27CC00142EC3 /* Giphy.json in Resources */,
 				C352B49928A971E0006BE06A /* Assets.xcassets in Resources */,
 				C352B4DE28A98074006BE06A /* ImagesCollectionViewCell.xib in Resources */,
-				C3F23FB528AABB8400142EC3 /* FavoritesListView.png in Resources */,
-				C3F23FB428AABB8400142EC3 /* FavoritesGridView.png in Resources */,
 				C352B4E628A987DB006BE06A /* ImagesTableViewCell.xib in Resources */,
 				C352B49728A971DF006BE06A /* Main.storyboard in Resources */,
-				C3F23FAF28AABB7600142EC3 /* SearchGIFsView.png in Resources */,
+				C3F23FBB28AC274A00142EC3 /* GiphyDiaryScreens.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

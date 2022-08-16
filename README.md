@@ -5,10 +5,7 @@ email: <akanksha.garg9@gmail.com>
 
 ## Screenshots
 
-![](GiphyDiary/GiphyDiary/Resources/TrendingGIFsView.png)
-![](GiphyDiary/GiphyDiary/Resources/SearchGIFsView.png)
-![](GiphyDiary/GiphyDiary/Resources/FavoritesGridView.png)
-![](GiphyDiary/GiphyDiary/Resources/FavoritesListView.png)
+![](GiphyDiary/Resources/GiphyDiaryScreens.png)
 
 ## Overview
 

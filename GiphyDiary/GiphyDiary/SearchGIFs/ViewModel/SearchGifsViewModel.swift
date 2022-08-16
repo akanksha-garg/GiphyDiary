@@ -24,7 +24,7 @@ class SearchGifsViewModel {
     var searching = false
     
     ///Network manager instance,
-    private var apiService: NetworkingProtocol = NetworkingManager()
+    var apiService: NetworkingProtocol = NetworkingManager()
     
     ///Shared instance of file Manager.
     private let fileManager = LocalFileManager.instance
@@ -101,7 +101,7 @@ class SearchGifsViewModel {
     ///
     /// - returns: Status of Operation (Wether Success or Failure).
     
-    func removeImageFromFavoriteFolder(imageName: String, index: Int) -> Bool {
+    func removeImageFromFavoriteFolder(imageName: String) -> Bool {
         let success = fileManager.removeImage(imageName: imageName, folderName: Constants.Data.folderName)
         return success
     }

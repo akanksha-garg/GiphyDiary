@@ -132,3 +132,24 @@ extension UITableView {
         self.separatorStyle = .singleLine
     }
 }
+
+extension NSObject {
+    
+    ///To read JSON file
+    func readjson(fileName: String) -> Data? {
+        do {
+            if let url = Bundle.main.path(forResource: fileName, ofType: "json") {
+                let path = URL(fileURLWithPath:url)
+                let data = try Data(contentsOf: path)
+                return data
+            } else {
+                print(Constants.Error.noDataError)
+            }
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+        return nil
+    }
+}
+

@@ -15,7 +15,7 @@ struct Constants {
     
     struct Data {
         //ToDo: Replace this with your account sepcific GIPHY API key
-        static let giphyAPI_Key = ""  //for example: "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"
+        static let giphyAPI_Key = "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"  //for example: "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"
         static let folderName = "MyFavorites"
     }
     
