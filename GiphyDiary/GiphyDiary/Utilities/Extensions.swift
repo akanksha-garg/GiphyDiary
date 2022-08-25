@@ -20,32 +20,42 @@ extension UIImageView {
     
     func loadGIF(_ url: URL, _ uniqueID: String) {
         
+        // For showing loading of GIF's
+        let loading = UIActivityIndicatorView(style: .medium)
+        loading.startAnimating()
+        addSubview(loading)
+        loading.center = center
+        
         // Check and return if GIF is avaialble in cache.
         if let images = imageCache.object(forKey: uniqueID as NSString) as? [UIImage] {
-            self.animationImages = images
-            self.startAnimating()
+            loading.removeFromSuperview()
+            animationImages = images
+            startAnimating()
             return
         }
         
         //If GIF is not avaialble in cache, then download.
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, let source =  CGImageSourceCreateWithData(data as CFData, nil)
-            else {
-                //Failure
-                DispatchQueue.main.async {
-                    self.image = UIImage(named: Constants.Image.placeHolder)
-                }
-                return
-            }
-            let imageCount = CGImageSourceGetCount(source)
-            var images = [UIImage]()
-            for i in 0 ..< imageCount {
-                if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
-                    images.append(UIImage(cgImage: image))
-                }
-            }
-            //Success: Saving GIF in cache.
             DispatchQueue.main.async { [weak self] in
+                
+                loading.removeFromSuperview()
+                guard let data = data, let source =  CGImageSourceCreateWithData(data as CFData, nil)
+                else {
+                    //Failure
+                    DispatchQueue.main.async {
+                        self?.image = UIImage(named: Constants.Image.placeHolder)
+                    }
+                    return
+                }
+                let imageCount = CGImageSourceGetCount(source)
+                var images = [UIImage]()
+                for i in 0 ..< imageCount {
+                    if let image = CGImageSourceCreateImageAtIndex(source, i, nil) {
+                        images.append(UIImage(cgImage: image))
+                    }
+                }
+                
+                //Success: Saving GIF in cache.
                 imageCache.setObject(images as AnyObject, forKey: uniqueID as NSString)
                 self?.animationImages = images
                 self?.startAnimating()
@@ -152,4 +162,3 @@ extension NSObject {
         return nil
     }
 }
-

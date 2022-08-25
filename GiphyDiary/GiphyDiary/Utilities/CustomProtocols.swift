@@ -31,4 +31,3 @@ protocol NetworkingProtocol {
 extension NetworkingProtocol {
     var responseType: APIResponseType? { return .success }
 }
-

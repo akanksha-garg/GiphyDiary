@@ -138,6 +138,7 @@ extension FavoriteGIFsViewController: UICollectionViewDelegate, UICollectionView
 extension FavoriteGIFsViewController: ImagesCollectionViewCellDelegate {
     
     func unFavActionOn(cell: ImagesCollectionViewCell) {
+        
         guard let indexPath = imagesCollectionview?.indexPath(for: cell) else {return}
         var name = viewModel.favoriteImageNames?[indexPath.item] ?? ""
         //Removing .extension part from the image name

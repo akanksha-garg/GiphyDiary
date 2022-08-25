@@ -38,7 +38,7 @@ class GiphyDiaryTests: XCTestCase {
         }
     }
     
-    func testLoadAndParseManufacturerDataNoNetworkError() {
+    func testLoadAndParseGIFDataNoNetworkError() {
         responseType = .noNetwork
         searchGifsViewModel.apiService = self
         searchGifsViewModel.searching = false
@@ -52,7 +52,7 @@ class GiphyDiaryTests: XCTestCase {
         }
     }
     
-    func testLoadAndParseManufacturerDataServiceError() {
+    func testLoadAndParseGIFDataServiceError() {
         responseType = .failure
         searchGifsViewModel.apiService = self
         searchGifsViewModel.searching = false
@@ -63,20 +63,6 @@ class GiphyDiaryTests: XCTestCase {
         waitForExpectations(timeout: 1) { (error) in
             XCTAssertNil(self.searchGifsViewModel.giphys)
             XCTAssertTrue(self.searchGifsViewModel.serviceError == .serviceError)
-        }
-    }
-    
-    func testLoadAndParseManufacturerDataNoDataError() {
-        responseType = .noDataError
-        searchGifsViewModel.apiService = self
-        searchGifsViewModel.searching = false
-        let expectation = expectation(description: "GetTrendingGifsFailure")
-        searchGifsViewModel.fetchTrendingGiphy { (success, error) in
-            expectation.fulfill()
-        }
-        waitForExpectations(timeout: 1) { (error) in
-            XCTAssertNil(self.searchGifsViewModel.giphys)
-            XCTAssertTrue(self.searchGifsViewModel.serviceError == .noDataError)
         }
     }
     
@@ -98,9 +84,12 @@ class GiphyDiaryTests: XCTestCase {
     }
     
     private func getAllImagesInFolder() {
-        favoriteGIFsViewModel.getAllImageInFavoriteFolder()
-        let imageName = favoriteGIFsViewModel.favoriteImageNames?.contains("TestImage.png") ?? false
-        XCTAssertTrue(imageName)
+        favoriteGIFsViewModel.getAllImageInFavoriteFolder(){ (success, error) in
+            if success {
+                let imageName = self.favoriteGIFsViewModel.favoriteImageNames?.contains("TestImage.png") ?? false
+                XCTAssertTrue(imageName)
+            }
+        }
     }
     
     func testRemoveImageFromFavoriteFolder() {
@@ -112,7 +101,7 @@ class GiphyDiaryTests: XCTestCase {
                 expectation.fulfill()
             }
         }
-        waitForExpectations(timeout: 1) { (error) in
+        waitForExpectations(timeout: 0.5) { (error) in
             XCTAssertNil(resultImage)
         }
     }
