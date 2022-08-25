@@ -25,6 +25,8 @@ class FavoriteGIFsViewController: UIViewController {
     var isAlternate = false
     ///Currently selected display type.
     var selectedType:LayoutType = .grid
+    /// Loder for showing loading while we get response from service
+    private var loader: Loader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +35,19 @@ class FavoriteGIFsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getAllImageInFavoriteFolder()
-        imagesCollectionview.reloadData()
+        
+        loader?.start()
+        viewModel.getAllImageInFavoriteFolder(){ [weak self] (success, error) in
+            DispatchQueue.main.async {
+                self?.loader?.stop()
+                if success {
+                    self?.imagesCollectionview.reloadData()
+                } else if let error =  error as? JsonError {
+                    print(error.localizedDescription)
+                }
+            }
+        }
+       
     }
     
     // MARK: - Instance Methods
@@ -49,6 +62,7 @@ class FavoriteGIFsViewController: UIViewController {
         imagesCollectionview.collectionViewLayout = layout
         imagesCollectionview.delegate = self
         segmentedControl.addTarget(self, action: #selector(FavoriteGIFsViewController.indexChanged(_:)), for: .valueChanged)
+        loader = Loader(view: view, style: .large)
     }
     
     /// SegmentBar change action.
@@ -92,7 +106,6 @@ extension FavoriteGIFsViewController: UICollectionViewDelegate, UICollectionView
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.Identifiers.IMAGES_COLLECTION_VIEW_CELL, for: indexPath) as? ImagesCollectionViewCell else { return UICollectionViewCell() }
         cell.img.image = viewModel.favoriteImage?[indexPath.item]
-        cell.tag = indexPath.item
         cell.delegate = self
         return cell
     }
@@ -125,10 +138,19 @@ extension FavoriteGIFsViewController: UICollectionViewDelegate, UICollectionView
 extension FavoriteGIFsViewController: ImagesCollectionViewCellDelegate {
     
     func unFavActionOn(cell: ImagesCollectionViewCell) {
-        guard let indexPath = imagesCollectionview.indexPath(for: cell) else {return}
-        var name = (viewModel.favoriteImageNames?[indexPath.item] ?? "")
+        guard let indexPath = imagesCollectionview?.indexPath(for: cell) else {return}
+        var name = viewModel.favoriteImageNames?[indexPath.item] ?? ""
+        //Removing .extension part from the image name
         name.removeLast(4)
-        viewModel.removeImageFromFavoriteFolder(imageName: name, index: indexPath.item)
-        imagesCollectionview.deleteItems(at: [indexPath])
+        viewModel.removeImageFromFavoriteFolder(imageName: name, index: indexPath.item){ [weak self] (success, error) in
+            DispatchQueue.main.async {
+                self?.loader?.stop()
+                if success {
+                    self?.imagesCollectionview.deleteItems(at: [indexPath])
+                } else if let error =  error as? JsonError {
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

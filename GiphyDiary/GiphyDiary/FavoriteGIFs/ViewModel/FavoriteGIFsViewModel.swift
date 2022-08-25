@@ -18,19 +18,28 @@ class FavoriteGIFsViewModel {
     var favoriteImageNames: [String]?
     
     ///To get all the images currently favorite by user.
-    func getAllImageInFavoriteFolder() {
-        let (images, imageNames) = fileManager.getAllImagesIn(folderName: Constants.Data.folderName)
-        favoriteImage = images
-        favoriteImageNames = imageNames
+    func getAllImageInFavoriteFolder(_ completion: fetchDataCompletionHandler?) {
+        fileManager.getAllImagesIn(folderName: Constants.Data.folderName){ [weak self](images, imageNames, error) in
+            if let error = error {
+                completion?(false, error)
+            } else {
+                self?.favoriteImage = images
+                self?.favoriteImageNames = imageNames
+                completion?(true, nil)
+            }
+        }
     }
     
     ///To remove image from favorites.
-    func removeImageFromFavoriteFolder(imageName: String, index: Int) {
+    func removeImageFromFavoriteFolder(imageName: String, index: Int, _ completion: fetchDataCompletionHandler?) {
        fileManager.removeImage(imageName: imageName, folderName: Constants.Data.folderName){ [weak self] (success, error) in
             DispatchQueue.main.async {
-                if success {
+                if let error = error {
+                    completion?(false, error)
+                } else {
                     self?.favoriteImage?.remove(at: index)
                     self?.favoriteImageNames?.remove(at: index)
+                    completion?(true, nil)
                 }
             }
         }

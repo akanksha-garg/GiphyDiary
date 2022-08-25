@@ -40,6 +40,10 @@ However, if you face any issue in building or running the project please run pod
 
   - This sample app require minimum iOS 15.2 and Xcode 13.2 to run.
   
+## Testing
+
+ - Unit test cases added for all the functions in the view model.
+  
 ## GIPHY API Integration
 Giphy is an animated GIF search engine. The Giphy API implements a REST-like interface. Connections can be made with any HTTP enabled programming language. Following APIs are used in app to fetch the data:
 

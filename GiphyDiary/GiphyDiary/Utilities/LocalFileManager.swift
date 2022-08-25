@@ -16,7 +16,6 @@ class LocalFileManager {
     /// Initializer
     private init() {}
     
-    
     /// Save the image in Document directory at specified folder through File Manager.
     ///
     /// - Parameters:
@@ -36,13 +35,13 @@ class LocalFileManager {
         else {
             completion(false, nil)
             return }
-        //Step3-> Save Image to path.
+        //Step3-> Save Image to path on background thread.
         DispatchQueue.global().async {
             do {
                 try data.write(to: url)
                 completion(true, nil)
             } catch let error {
-                print("Error saving image. \(error)")
+                print(Constants.Error.errorSavingImage, "\(error)")
                 completion(false, error)
             }
         }
@@ -56,18 +55,18 @@ class LocalFileManager {
     
     func removeImage(imageName: String, folderName: String, _ completion: @escaping fetchDataCompletionHandler) {
         
-        //Step1-> Get path for image.
+        //Step1-> Get path for Image.
         guard let url = getURLForImage(imageName: imageName, folderName: folderName) else {
             completion(false, nil)
             return
         }
-        //Step2-> Remove image on on fetched path.
+        //Step2-> Remove image at fetched path on background thread.
         DispatchQueue.global().async {
             do {
                 try FileManager.default.removeItem(atPath: url.path)
                 completion(true, nil)
             } catch let error {
-                print("Error removing image. \(error)")
+                print(Constants.Error.errorRemovingImage, "\(error)")
                 completion(false, error)
             }
         }
@@ -93,34 +92,40 @@ class LocalFileManager {
     ///
     /// - Parameters:
     ///   - folderName: Name of folder from which images need to be fetched.
-    ///
-    ///  - returns: Images and their Names arary fetched from given folder.
     
-    func getAllImagesIn(folderName: String) -> ([UIImage]?, [String]?) {
+    func getAllImagesIn(folderName: String, completion: @escaping ([UIImage]?, [String]?, Error?) -> Void) {
         
-        guard let url = getURLForFolder(folderName: folderName) else {return (nil,nil)}
-        
-        
-        do {
-            let images = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [.contentModificationDateKey], options: .skipsHiddenFiles)
-            let imagesNamesArray = images.map { image in
-                (image.lastPathComponent, (try? image.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? Date.distantPast)
-            }
-                .sorted(by: { $0.1 > $1.1 }) // sort descending modification dates
-                .map { $0.0 }
-            
-            var imageArray = [UIImage]()
-            for value in imagesNamesArray {
-                if let image = UIImage(contentsOfFile: (url.path+"/"+value)) {
-                    imageArray.insert(image, at: 0)
+        //Step1-> Get path for folder.
+        guard let url = getURLForFolder(folderName: folderName) else {
+            completion(nil, nil,JsonError.notFound)
+            return
+        }
+        //Step2-> Fetch all Images at fetched path on background thread.
+        DispatchQueue.global().async {
+            do {
+                let images = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [.contentModificationDateKey], options: .skipsHiddenFiles)
+                let imagesNamesArray = images.map { image in
+                    (image.lastPathComponent, (try? image.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? Date.distantPast)
                 }
+                    .sorted(by: { $0.1 > $1.1 }) // sort descending modification dates
+                    .map { $0.0 }
+                
+                var imageArray = [UIImage]()
+                var newImageNamesArray = [String]()
+                for value in imagesNamesArray {
+                    if let image = UIImage(contentsOfFile: (url.path+"/"+value)) {
+                        imageArray.append(image)
+                        newImageNamesArray.append(value)
+                    }
+                }
+                completion(imageArray, newImageNamesArray, nil)
+                
+                
+            } catch let error {
+                print(Constants.Error.errorFetchingData, "\(folderName)", "\(error)")
+                completion(nil, nil, error)
+                return
             }
-            return (imageArray, imagesNamesArray)
-            
-            
-        } catch let error {
-            print("Error while Fetching data from folder. FolderName: \(folderName). \(error)")
-            return (nil, nil)
         }
     }
     
@@ -131,12 +136,14 @@ class LocalFileManager {
     
     private func createFolderIfNeeded(folderName: String) {
         
+        //Step1-> Get path for folder.
         guard let url = getURLForFolder(folderName: folderName) else {return}
         if !FileManager.default.fileExists(atPath: url.path) {
             do {
+                //Step2-> Create folder if required.
                 try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
             } catch let error {
-                print("Error creating Directory. FolderName: \(folderName). \(error)")
+                print(Constants.Error.errorCreatingDirectory, "\(folderName)", "\(error)")
             }
         }
     }

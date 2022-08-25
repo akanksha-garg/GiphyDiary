@@ -29,5 +29,4 @@ class ImagesCollectionViewCell: UICollectionViewCell {
     @IBAction func unFavButtonAction(_ sender: Any) {
         delegate?.unFavActionOn(cell: self)
     }
-
 }

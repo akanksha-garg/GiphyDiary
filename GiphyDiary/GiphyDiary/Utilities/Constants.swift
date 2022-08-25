@@ -15,7 +15,7 @@ struct Constants {
     
     struct Data {
         //ToDo: Replace this with your account sepcific GIPHY API key
-        static let giphyAPI_Key = ""  //for example: "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"
+        static let giphyAPI_Key = "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"  //for example: "EwyL193ETNigSUt0k14PwpEPZiDwAqAm"
         static let folderName = "MyFavorites"
     }
     
@@ -34,6 +34,10 @@ struct Constants {
         static let errorTitle = "Error!!!"
         static let reachabilityError = "could not start reachability notifier"
         static let noKeyFound = "No API key found in request."
+        static let errorSavingImage = "Error saving image."
+        static let errorRemovingImage = "Error removing image."
+        static let errorFetchingData = "Error while Fetching data from folder. FolderName:"
+        static let errorCreatingDirectory = "Error creating Directory. FolderName:"
     }
     
     struct Text {

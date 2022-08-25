@@ -144,7 +144,9 @@ extension SearchGifsViewController: UISearchBarDelegate {
 extension SearchGifsViewController: ImagesTableViewCellDelegate {
     
     func unFavActionOn(cell: ImagesTableViewCell) {
-        if let currentGiphy = viewModel.giphys?.giphyData[cell.tag] {
+        
+        let giphyData = viewModel.getCurrentGiphyData()
+        if let currentGiphy = giphyData?[cell.tag] {
             if currentGiphy.isFavorite {
                 viewModel.removeImageFromFavoriteFolder(imageName: currentGiphy.id){(success, error) in
                     DispatchQueue.main.async {
